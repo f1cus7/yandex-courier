@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="div-stamina"><span>14</span>%</div>
+      <div class="div-happy"><span>87</span>%</div>
+      <button id="btn-transport">
+        <img src="images/transport.png" alt="" id="img-transport" />
+        транспорт
+      </button>
+      <button id="btn-settings">
+        <img src="images/settings.svg" alt="" id="img-settings" />
+      </button>
+    </div>
+    <div class="main-container">
+      <div class="balance">1000 ₽</div>
+      <div class="main-section">
+        <img src="images/courier-start.png" alt="" class="img-courier-start">
+        <button class="btn-start">начать</button>
+      </div>
+      <div class="btns-container-charakteristic">
+        <button class="btns-charakteristic" id="btn-stamina"></button>
+        <button class="btns-charakteristic" id="btn-happy"></button>
+        <button class="btns-charakteristic" id="btn-update">
+          <img src="images/update.svg" alt="" />
+        </button>
+      </div>
+    </div>
+  </body>
 </html>

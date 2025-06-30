@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 5vw;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #fbfbfa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+:root {
+  --yellow: #fde102;
+  --grey: #eeeeee;
+  --blue: #00acfe;
+  --red: #ff3d14;
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgb(215, 215, 215);
+  margin-top: 2vh;
+  align-items: center;
+  border-radius: 5vw;
+  padding: 1.5vh;
+}
+
+#img-settings {
+  width: 5vw;
+}
+
+#img-transport {
+  width: 9vw;
+  border-radius: 50%;
+}
+
+#btn-settings {
+  border: none;
+  background-color: #323842;
+  border-radius: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vw;
+}
+
+#btn-transport {
+  background-color: white;
+  border: none;
+  border: .3vh solid var(--yellow);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5vw;
+  width: 40vw;
+  margin: auto 2vw;
+  height: 10vw;
+}
+
+.div-stamina,
+.div-happy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  border-radius: 3vw;
+  height: 10vw;
+  width: 15vw;
+}
+
+.div-stamina {
+  background-color: var(--blue);
+}
+
+.div-happy {
+  background-color: var(--red);
+}
+
+.balance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+  font-size: 8vw;
+  font-weight: bold;
+  margin-bottom: 2vh;
+}
+
+
+.btns-container-charakteristic {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3vw;
+}
+
+.btns-charakteristic {
+  width: 15vw;
+  height: 15vw;
+  margin-top: 2vw;
+  border: none;
+  border-radius: 2vw;
+}
+
+#btn-stamina {
+  background-image: url(images/stamina.png);
+  background-size: cover;
+}
+
+#btn-happy {
+  background-image: url(images/happy.png);
+  background-size: cover;
+}
+
+#btn-update {
+  background-size: cover;
+  background-color: var(--yellow);
+  padding: 1vw;
+}
+
+.main-container {
+  background-color: #ffffff;
+  width: 95vw;
+  height: 83vh;
+  margin-top: 3vh;
+  box-shadow: 0px 0px 10px rgb(215, 215, 215);
+  border-radius: 5vw;
+}
+
+.main-section {
+  width: 90vw;
+  height: 58vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img-courier-start {
+  width: 50vw;
+}
+
+.btn-start {
+  background-color: var(--yellow);
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 8vw;
+  padding: 1.5vh 8vw;
+  border-radius: 5vw;
+}
