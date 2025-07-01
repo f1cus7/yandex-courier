@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Яндекс курьер</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="header">
-      <div class="div-stamina"><span>14</span>%</div>
-      <div class="div-happy"><span>87</span>%</div>
+      <div class="div-stamina"><span>100</span>%</div>
+      <div class="div-happy"><span>100</span>%</div>
       <button id="btn-transport">
         <img src="images/transport.png" alt="" id="img-transport" />
         транспорт
@@ -18,10 +18,14 @@
         <img src="images/settings.svg" alt="" id="img-settings" />
       </button>
     </div>
-    <div class="main-container">
-      <div class="balance">1000 ₽</div>
+    <!-- мэин -->
+    <div class="main-container d-none">
+      <div class="balance">
+        <img src="images/money.png" alt="" class="img-money" />
+        1000 ₽
+      </div>
       <div class="main-section">
-        <img src="images/courier-start.png" alt="" class="img-courier-start">
+        <img src="images/courier-start.png" alt="" class="img-courier-start" />
         <button class="btn-start">начать</button>
       </div>
       <div class="btns-container-charakteristic">
@@ -32,5 +36,68 @@
         </button>
       </div>
     </div>
+    <!-- транспорт -->
+    <div class="transport-container">
+      <div class="transport-container-top">
+        <button onclick="backToMain()" class="btn-img-back">
+          <img src="images/arrow-back.png" alt="" class="img-back" />
+        </button>
+        <div class="balance" style="margin-left: 4vw">
+          <img src="images/money.png" alt="" class="img-money" />
+          1000 ₽
+        </div>
+      </div>
+      <div class="choice-transport-container">
+        <div class="pick-transport">
+          <div class="div-img-transport">
+            <img src="images/peshiy.png" alt="" class="img-pick-transport" />
+          </div>
+          <div class="text-transport">
+            <p class="transport-name">Пеший</p>
+            <br />
+            <p class="transport-description">Ваш путь начинается здесь</p>
+          </div>
+          <button class="btn-buy-transport">Купить</button>
+        </div>
+
+        <div class="pick-transport">
+          <div class="div-img-transport">
+            <img src="images/byke.png" alt="" class="img-pick-transport" />
+          </div>
+          <div class="text-transport">
+            <p class="transport-name">Велоcипед</p>
+            <br />
+            <p class="transport-description">Ваш путь начинается здесь</p>
+          </div>
+          <button class="btn-buy-transport">Купить</button>
+        </div>
+
+        <div class="pick-transport">
+          <div class="div-img-transport">
+            <img src="images/peshiy.png" alt="" class="img-pick-transport" />
+          </div>
+          <div class="text-transport">
+            <p class="transport-name">Электровелосипед</p>
+            <br />
+            <p class="transport-description">Ваш путь начинается здесь</p>
+          </div>
+          <button class="btn-buy-transport">Купить</button>
+        </div>
+
+        <div class="pick-transport">
+          <div class="div-img-transport">
+            <img src="images/peshiy.png" alt="" class="img-pick-transport" />
+          </div>
+          <div class="text-transport">
+            <p class="transport-name">Авто</p>
+            <br />
+            <p class="transport-description">Ваш путь начинается здесь</p>
+          </div>
+          <button class="btn-buy-transport">Купить</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js" defer></script>
   </body>
 </html>

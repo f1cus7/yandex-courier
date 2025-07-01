@@ -17,6 +17,7 @@ body {
   --grey: #eeeeee;
   --blue: #00acfe;
   --red: #ff3d14;
+  --green: #198754;
 }
 
 .header {
@@ -53,7 +54,7 @@ body {
 #btn-transport {
   background-color: white;
   border: none;
-  border: .3vh solid var(--yellow);
+  border: 0.3vh solid var(--yellow);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -87,12 +88,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2vh;
+  margin-top: 3vh;
   font-size: 8vw;
   font-weight: bold;
-  margin-bottom: 2vh;
+  color: var(--green);
+  margin-bottom: 3vh;
+  background-color: rgb(255, 255, 255);
+  width: 60vw;
+  height: 6vh;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 10px rgb(215, 215, 215);
+  border-radius: 2vw;
+  padding: 1vh;
 }
 
+.img-money {
+  height: 6vh;
+  margin-right: 2vw;
+}
 
 .btns-container-charakteristic {
   display: flex;
@@ -135,7 +149,7 @@ body {
 
 .main-section {
   width: 90vw;
-  height: 58vh;
+  height: 53vh;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -156,4 +170,80 @@ body {
   font-size: 8vw;
   padding: 1.5vh 8vw;
   border-radius: 5vw;
+}
+
+.d-none {
+  display: none;
+}
+
+.transport-container-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95vw;
+  margin-top: 3vh;
+}
+
+.img-back {
+  width: 10vw;
+  height: 10vw;
+}
+
+.btn-img-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12vw;
+  height: 12vw;
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgb(215, 215, 215);
+}
+
+.choice-transport-container {
+  width: 95vw;
+  height: 64vh;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgb(215, 215, 215);
+  border-radius: 5vw;
+  margin-top: 1vh;
+  padding: 2vh 0;
+}
+
+.pick-transport {
+  display: flex;
+  justify-content: space-evenly;
+  height: 16vh;
+  align-items: center;
+}
+
+.img-pick-transport {
+  height: 10vh;
+}
+
+.text-transport {
+  font-size: 1vw;
+}
+
+.transport-name {
+  font-size: 4vw;
+  font-weight: bold;
+}
+
+.transport-description {
+  font-size: 3vw;
+}
+
+.div-img-transport {
+  width: 12vw;
+}
+
+.btn-buy-transport {
+  background-color: var(--green);
+  color: white;
+  border: none;
+  width: 25vw;
+  height: 7vh;
+  border-radius: 3vw;
 }
