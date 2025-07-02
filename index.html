@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Яндекс курьер</title>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="header">
       <div class="div-stamina"><span>100</span>%</div>
       <div class="div-happy"><span>100</span>%</div>
-      <button id="btn-transport">
+      <button id="btn-transport" onclick="openTransport()">
         <img src="images/transport.png" alt="" id="img-transport" />
         транспорт
       </button>
-      <button id="btn-settings">
+      <button id="btn-settings" onclick="openSettings()">
         <img src="images/settings.svg" alt="" id="img-settings" />
       </button>
     </div>
     <!-- мэин -->
-    <div class="main-container d-none">
+    <div class="main-container">
       <div class="balance">
         <img src="images/money.png" alt="" class="img-money" />
         1000 ₽
@@ -29,15 +33,27 @@
         <button class="btn-start">начать</button>
       </div>
       <div class="btns-container-charakteristic">
-        <button class="btns-charakteristic" id="btn-stamina"></button>
-        <button class="btns-charakteristic" id="btn-happy"></button>
-        <button class="btns-charakteristic" id="btn-update">
+        <button
+          class="btns-charakteristic"
+          id="btn-stamina"
+          onclick="btnStamina()"
+        ></button>
+        <button
+          class="btns-charakteristic"
+          id="btn-happy"
+          onclick="btnHappy()"
+        ></button>
+        <button
+          class="btns-charakteristic"
+          id="btn-update"
+          onclick="btnUpdate()"
+        >
           <img src="images/update.svg" alt="" />
         </button>
       </div>
     </div>
     <!-- транспорт -->
-    <div class="transport-container">
+    <div class="transport-container d-none">
       <div class="transport-container-top">
         <button onclick="backToMain()" class="btn-img-back">
           <img src="images/arrow-back.png" alt="" class="img-back" />
@@ -50,14 +66,16 @@
       <div class="choice-transport-container">
         <div class="pick-transport">
           <div class="div-img-transport">
-            <img src="images/peshiy.png" alt="" class="img-pick-transport" />
+            <img src="images/peshiy1.png" alt="" class="img-pick-transport" />
           </div>
           <div class="text-transport">
             <p class="transport-name">Пеший</p>
             <br />
             <p class="transport-description">Ваш путь начинается здесь</p>
           </div>
-          <button class="btn-buy-transport">Купить</button>
+          <button class="btn-buy-transport">
+            <span class="span-buy-transport">бесплатно</span>
+          </button>
         </div>
 
         <div class="pick-transport">
@@ -67,37 +85,101 @@
           <div class="text-transport">
             <p class="transport-name">Велоcипед</p>
             <br />
-            <p class="transport-description">Ваш путь начинается здесь</p>
+            <p class="transport-description">На велосипеде будет легче</p>
           </div>
-          <button class="btn-buy-transport">Купить</button>
+          <button class="btn-buy-transport">
+            <span class="span-buy-transport">10,000 ₽</span>
+          </button>
         </div>
 
         <div class="pick-transport">
           <div class="div-img-transport">
-            <img src="images/peshiy.png" alt="" class="img-pick-transport" />
+            <img
+              src="images/electrobyke.png"
+              alt=""
+              class="img-pick-transport"
+            />
           </div>
           <div class="text-transport">
             <p class="transport-name">Электровелосипед</p>
             <br />
-            <p class="transport-description">Ваш путь начинается здесь</p>
+            <p class="transport-description">Надежней прошлого</p>
           </div>
-          <button class="btn-buy-transport">Купить</button>
+          <button class="btn-buy-transport">
+            <span class="span-buy-transport">40,000 ₽</span>
+          </button>
         </div>
 
         <div class="pick-transport">
           <div class="div-img-transport">
-            <img src="images/peshiy.png" alt="" class="img-pick-transport" />
+            <img src="images/car1.png" alt="" class="img-pick-transport" />
           </div>
           <div class="text-transport">
             <p class="transport-name">Авто</p>
             <br />
-            <p class="transport-description">Ваш путь начинается здесь</p>
+            <p class="transport-description">четыре колеса лучше двух</p>
           </div>
-          <button class="btn-buy-transport">Купить</button>
+          <button class="btn-buy-transport">
+            <span class="span-buy-transport">80,000 ₽</span>
+          </button>
         </div>
       </div>
     </div>
+    <!-- настройки -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div><div class="modal-settings-close">&times;</div></div>
 
+        <button class="btn-how-to-play">Как играть?</button>
+        <div>
+          <p class="p-volume">Громкость музыки</p>
+          <input type="range" class="input-volume" />
+        </div>
+        <div>
+          <p class="p-volume">Громкость звуков</p>
+          <input type="range" class="input-volume" />
+        </div>
+      </div>
+    </div>
+    <!-- выносливость -->
+    <div class="stamina-container d-none">
+      <div class="characteristics-container">
+        <div class="balance">
+          <img src="images/money.png" alt="" class="img-money" />
+          1000 ₽
+        </div>
+        <div class="stamina-items-container">
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/sleep.png" alt="" class="img-characteristic">
+            </div>
+            <div class="characteristic-text-container">
+              <p>выспаться</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>10 сек</p>
+            </div>
+            <button class="characteristic-btn">0 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/sleep.png" alt="" class="img-characteristic">
+            </div>
+            <div class="characteristic-text-container">
+              <p>qweqweqwe</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>3 сек</p>
+            </div>
+            <button class="characteristic-btn">10000 ₽</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- счастье -->
+    <div class="happy-container d-none"></div>
+    <!-- улучшение -->
+    <div class="update-container d-none"></div>
     <script src="index.js" defer></script>
   </body>
 </html>
