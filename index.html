@@ -144,40 +144,173 @@
     <!-- выносливость -->
     <div class="stamina-container d-none">
       <div class="characteristics-container">
-        <div class="balance">
-          <img src="images/money.png" alt="" class="img-money" />
-          1000 ₽
+        <div class="characteristic-balance">
+          <button onclick="backToMain()" class="btn-img-back">
+            <img src="images/arrow-back.png" alt="" class="img-back" />
+          </button>
+          <div class="balance" style="margin-left: 3vw">
+            <img src="images/money.png" alt="" class="img-money" />
+            1000 ₽
+          </div>
         </div>
         <div class="stamina-items-container">
           <div class="characteristic-item">
             <div class="characteristic-img-container">
-              <img src="images/sleep.png" alt="" class="img-characteristic">
+              <img src="images/sleep.png" alt="" class="img-characteristic" />
             </div>
             <div class="characteristic-text-container">
-              <p>выспаться</p>
+              <p>Выспаться</p>
             </div>
             <div class="characteristic-time-container">
-              <p>10 сек</p>
+              <p>8 сек</p>
+              <p class="p-stamina-color">+5%</p>
             </div>
             <button class="characteristic-btn">0 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
-              <img src="images/sleep.png" alt="" class="img-characteristic">
+              <img
+                src="images/energetic.png"
+                alt=""
+                class="img-characteristic"
+              />
             </div>
             <div class="characteristic-text-container">
-              <p>qweqweqwe</p>
+              <p>Выпить энергетик</p>
             </div>
             <div class="characteristic-time-container">
               <p>3 сек</p>
+              <p class="p-stamina-color">+15%</p>
             </div>
-            <button class="characteristic-btn">10000 ₽</button>
+            <button class="characteristic-btn">100 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/sauna.png" alt="" class="img-characteristic" />
+            </div>
+            <div class="characteristic-text-container">
+              <p>Сходить в сауну</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>5 сек</p>
+              <p class="p-stamina-color">+25%</p>
+            </div>
+            <button class="characteristic-btn">1,000 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/shprits.png" alt="" class="img-characteristic" />
+            </div>
+            <div class="characteristic-text-container">
+              <p>Укол бодрости</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>2 сек</p>
+              <p class="p-stamina-color">+50%</p>
+            </div>
+            <button class="characteristic-btn">2,500 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/asmr.png" alt="" class="img-characteristic" />
+            </div>
+            <div class="characteristic-text-container">
+              <p>ASMR коуча</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>5 сек</p>
+              <p class="p-stamina-color">+100%</p>
+            </div>
+            <button class="characteristic-btn">5,000 ₽</button>
           </div>
         </div>
       </div>
     </div>
     <!-- счастье -->
-    <div class="happy-container d-none"></div>
+    <div class="happy-container d-none">
+      <div class="characteristics-container">
+        <div class="characteristic-balance">
+          <button onclick="backToMain()" class="btn-img-back">
+            <img src="images/arrow-back.png" alt="" class="img-back" />
+          </button>
+          <div class="balance" style="margin-left: 3vw">
+            <img src="images/money.png" alt="" class="img-money" />
+            1000 ₽
+          </div>
+        </div>
+        <div class="happy-items-container">
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/tiktok.png" alt="" class="img-characteristic" />
+            </div>
+            <div class="characteristic-text-container">
+              <p>Посмотреть tik-tok</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>8 сек</p>
+              <p class="p-happy-color">+5%</p>
+            </div>
+            <button class="characteristic-btn">0 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img
+                src="images/wb.png"
+                alt=""
+                class="img-characteristic"
+              />
+            </div>
+            <div class="characteristic-text-container">
+              <p>Заказать безделушки</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>3 сек</p>
+              <p class="p-happy-color">+15%</p>
+            </div>
+            <button class="characteristic-btn">200 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/rolls.png" alt="" class="img-characteristic" />
+            </div>
+            <div class="characteristic-text-container">
+              <p>Купить роллов</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>5 сек</p>
+              <p class="p-happy-color">+25%</p>
+            </div>
+            <button class="characteristic-btn">700 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/meeting.png" alt="" class="img-characteristic" />
+            </div>
+            <div class="characteristic-text-container">
+              <p>Встретиться с друзьями</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>2 сек</p>
+              <p class="p-happy-color">+50%</p>
+            </div>
+            <button class="characteristic-btn">1,500 ₽</button>
+          </div>
+          <div class="characteristic-item">
+            <div class="characteristic-img-container">
+              <img src="images/restoraunt.png" alt="" class="img-characteristic" />
+            </div>
+            <div class="characteristic-text-container">
+              <p>Сходить в ресторан</p>
+            </div>
+            <div class="characteristic-time-container">
+              <p>5 сек</p>
+              <p class="p-happy-color">+100%</p>
+            </div>
+            <button class="characteristic-btn">3,000 ₽</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- улучшение -->
     <div class="update-container d-none"></div>
     <script src="index.js" defer></script>

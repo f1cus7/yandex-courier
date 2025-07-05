@@ -199,6 +199,7 @@ body {
   border: none;
   border-radius: 50%;
   box-shadow: 0px 0px 10px rgb(215, 215, 215);
+  margin-left: 1vw;
 }
 
 .choice-transport-container {
@@ -320,7 +321,7 @@ body {
   flex-direction: column;
 }
 
-.stamina-items-container {
+.stamina-items-container, .happy-items-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -333,7 +334,7 @@ body {
   align-items: center;
   width: 85vw;
   height: 10vh;
-  margin: 2vh 0;
+  margin: 1.5vh 0;
   box-shadow: 0px 0px 10px rgb(215, 215, 215);
   border-radius: 5vw;
 }
@@ -351,9 +352,10 @@ body {
   font-size: 4vw;
 }
 
-.characteristic-time-container {
+.characteristic-time-container, .characteristic-time-container p{
   width: 15vw;
   font-weight: bold;
+  font-size: 4.5vw;
 }
 
 .characteristic-btn {
@@ -367,4 +369,20 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.characteristic-balance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  margin-top: 0vh;
+}
+
+.p-happy-color {
+  color: var(--red);
+}
+
+.p-stamina-color {
+  color: var(--blue);
 }
