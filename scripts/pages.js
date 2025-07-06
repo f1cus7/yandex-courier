@@ -62,3 +62,43 @@ window.onclick = (event) => {
     modal.style.display = "none";
   }
 };
+
+
+const nextPage = (page) => {
+  if (page == 'stamina') {
+    main.classList.add('d-none')
+    stamina.classList.add('d-none')
+    happy.classList.remove('d-none')
+    update.classList.add('d-none')
+    transport.classList.add('d-none')
+  } else if (page == 'happy') {
+    main.classList.add('d-none')
+    stamina.classList.add('d-none')
+    happy.classList.add('d-none')
+    update.classList.remove('d-none')
+    transport.classList.add('d-none')
+  } else if (page == 'update') {
+    main.classList.add('d-none')
+    stamina.classList.remove('d-none')
+    happy.classList.add('d-none')
+    update.classList.add('d-none')
+    transport.classList.add('d-none')
+  } else {
+    main.classList.remove('d-none')
+    stamina.classList.add('d-none')
+    happy.classList.add('d-none')
+    update.classList.add('d-none')
+    transport.classList.add('d-none')
+  }
+}
+
+const modalStartBtn = () => {
+  main.classList.add("d-none");
+  stamina.classList.add("d-none");
+  happy.classList.add("d-none");
+  update.classList.add("d-none");
+  transport.classList.remove("d-none");
+  startModal.style.display = "none";
+};
+
+

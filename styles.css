@@ -18,6 +18,7 @@ body {
   --blue: #00acfe;
   --red: #ff3d14;
   --green: #198754;
+  --danger: #dc3545;
 }
 
 .header {
@@ -101,6 +102,11 @@ body {
   box-shadow: 0 0 10px rgb(215, 215, 215);
   border-radius: 4vw;
   padding: 1vh;
+}
+
+.balance span {
+  font-size: 8vw;
+  margin-right: 2vw;
 }
 
 .img-money {
@@ -199,7 +205,6 @@ body {
   border: none;
   border-radius: 50%;
   box-shadow: 0px 0px 10px rgb(215, 215, 215);
-  margin-left: 1vw;
 }
 
 .choice-transport-container {
@@ -253,6 +258,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: .3s;
 }
 
 .span-buy-transport {
@@ -319,9 +325,10 @@ body {
   border-radius: 5vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.stamina-items-container, .happy-items-container {
+.stamina-items-container, .happy-items-container, .update-items-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -375,8 +382,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90vw;
-  margin-top: 0vh;
+  width: 92vw;
+  margin-top: -4vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .p-happy-color {
@@ -385,4 +394,40 @@ body {
 
 .p-stamina-color {
   color: var(--blue);
+}
+
+.p-update-color {
+  color: var(--yellow);
+}
+
+.item-chance {
+  background: linear-gradient(90deg, var(--blue) 10%, white 0%);
+}
+
+.item-speed {
+  background: linear-gradient(90deg, var(--blue) 25%, white 0%);
+}
+
+.item-dohod {
+  background: linear-gradient(90deg, var(--blue) 40%, white 0%);
+}
+
+.item-krit {
+  background: linear-gradient(90deg, var(--blue) 60%, white 0%);
+}
+
+.item-luck {
+  background: linear-gradient(90deg, var(--blue) 100%, white 0%);
+}
+
+.modalStartBtn {
+  background-color: white;
+  border: none;
+  color: white;
+  background-color: var(--yellow);
+  padding: 2vh 0;
+  font-weight: bold;
+  margin-top: 3vh;
+  border-radius: 100vw;
+  letter-spacing: .5vw;
 }
