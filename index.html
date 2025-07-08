@@ -12,8 +12,8 @@
   </head>
   <body>
     <div class="header">
-      <div class="div-stamina"><span>100</span>%</div>
-      <div class="div-happy"><span>100</span>%</div>
+      <div class="div-stamina"><span id="node-stamina"></span>%</div>
+      <div class="div-happy"><span id="node-happy"></span>%</div>
       <button id="btn-transport" onclick="openTransport()">
         <img src="images/transport.png" alt="" id="img-transport" />
         транспорт
@@ -29,8 +29,13 @@
         <span class="balance-count"></span> ₽
       </div>
       <div class="main-section">
+        <div class="main-section-start">
         <img src="images/courier-start.png" alt="" class="img-courier-start" />
         <button class="btn-start" onclick="start()">начать</button>
+        </div>
+        <div class="main-section-deliver" style="display: none;">
+          
+        </div>
       </div>
       <div class="btns-container-charakteristic">
         <button
@@ -173,7 +178,7 @@
               <p>8 сек</p>
               <p class="p-stamina-color">+5%</p>
             </div>
-            <button class="characteristic-btn">0 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('sleep')">0 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -190,7 +195,7 @@
               <p>3 сек</p>
               <p class="p-stamina-color">+15%</p>
             </div>
-            <button class="characteristic-btn">100 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('energy')">100 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -203,7 +208,7 @@
               <p>5 сек</p>
               <p class="p-stamina-color">+25%</p>
             </div>
-            <button class="characteristic-btn">1,000 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('sauna')">1,000 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -216,7 +221,7 @@
               <p>2 сек</p>
               <p class="p-stamina-color">+50%</p>
             </div>
-            <button class="characteristic-btn">2,500 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('ukol')">2,500 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -229,7 +234,7 @@
               <p>5 сек</p>
               <p class="p-stamina-color">+100%</p>
             </div>
-            <button class="characteristic-btn">5,000 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('asmr')">5,000 ₽</button>
           </div>
         </div>
       </div>
@@ -266,7 +271,7 @@
               <p>8 сек</p>
               <p class="p-happy-color">+5%</p>
             </div>
-            <button class="characteristic-btn">0 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('tiktok')">0 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -279,7 +284,7 @@
               <p>3 сек</p>
               <p class="p-happy-color">+15%</p>
             </div>
-            <button class="characteristic-btn">200 ₽</button>
+            <button class="characteristic-btn"  onclick="useCharacteristic('wb')">200 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -292,7 +297,7 @@
               <p>5 сек</p>
               <p class="p-happy-color">+25%</p>
             </div>
-            <button class="characteristic-btn">700 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('sushi')">700 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -305,7 +310,7 @@
               <p>2 сек</p>
               <p class="p-happy-color">+50%</p>
             </div>
-            <button class="characteristic-btn">1,500 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('friends')">1,500 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -322,7 +327,7 @@
               <p>5 сек</p>
               <p class="p-happy-color">+100%</p>
             </div>
-            <button class="characteristic-btn">3,000 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('restoraunt')">3,000 ₽</button>
           </div>
         </div>
       </div>
