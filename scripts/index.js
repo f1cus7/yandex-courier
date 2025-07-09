@@ -7,8 +7,9 @@ let movementVelo = localStorage.getItem("movementVelo");
 let movementByke = localStorage.getItem("movementByke");
 let movementCar = localStorage.getItem("movementCar");
 balance += 500;
-let happyProcent = 10;
-let staminaProcent = 20;
+let happyProcent = 100;
+let staminaProcent = 100;
+
 
 let usingTransport = localStorage.getItem("usingTransport") || "peshy";
 window.addEventListener("DOMContentLoaded", () => {
@@ -197,7 +198,18 @@ const start = () => {
           document.querySelector(".main-section-start").style.display = "flex";
           document.querySelector(".main-section-deliver").style.display =
             "none";
-          let randomForBalance = Math.random() * (3 - 1) + 1;
+
+          let randomForBalance;
+          if (usingTransport == 'peshy') {
+            randomForBalance = Math.random() * (3 - 1) + 1;
+          } else if (usingTransport == 'velo') {
+            randomForBalance = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
+          } else if (usingTransport == 'byke') {
+            randomForBalance = Math.floor(Math.random() * (5 - 3 + 1)) + 3;
+          } else if (usingTransport == 'car') {
+            randomForBalance = Math.floor(Math.random() * (6 - 4 + 1)) + 4;
+          }
+
           balance += Number((randomStart * randomForBalance).toFixed());
           updateBalance();
           staminaProcent -= (randomStart / 10) * 2;
@@ -266,3 +278,5 @@ const useCharacteristic = (char) => {
     buyCharacteristic(3000, "happy", 100);
   }
 };
+
+balance = 500000;
