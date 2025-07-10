@@ -7,9 +7,156 @@ let movementVelo = localStorage.getItem("movementVelo");
 let movementByke = localStorage.getItem("movementByke");
 let movementCar = localStorage.getItem("movementCar");
 balance += 500;
-let happyProcent = 100;
-let staminaProcent = 100;
+let happyProcent = 10;
+let staminaProcent = 10;
 
+let chay = 0;
+let chayPlus = 2.5;
+let chayLvl = 0;
+let chayProgress = 0;
+
+let speed = 0;
+let speedPlus = 2.5;
+let speedLvl = 0;
+let speedProgress = 0;
+
+let upBalance = 0;
+let upBalancePlus = 1;
+let upBalanceLvl = 0;
+let upBalanceProgress = 0;
+
+let krit = 0;
+let kritPlus = 0.5;
+let kritLvl = 0;
+let kritProgress = 0;
+
+let goodEvent = 25;
+let goodEventPlus = 2.5;
+let goodEventLvl = 0;
+let goodEventProgress = 0;
+
+let updatesCost = [
+  250, 300, 450, 550, 650, 750, 850, 950, 1150, 1300, 1500, 2000, 2500, 3000,
+  4000, 3800, 5000, 6000, 7000, 8000,
+];
+let updatesCostGoodEvent = [
+  250, 750, 1500, 2000, 2500, 3500, 5500, 8000, 11000, 15000,
+];
+
+const chayNode = document.getElementById("chayNode");
+const speedNode = document.getElementById("speedNode");
+const upBalanceNode = document.getElementById("upBalanceNode");
+const kritNode = document.getElementById("kritNode");
+const goodEventNode = document.getElementById("goodEventNode");
+const chayBtn = document.getElementById("chayBtn");
+const speedBtn = document.getElementById("speedBtn");
+const upBalanceBtn = document.getElementById("upBalanceBtn");
+const kritBtn = document.getElementById("kritBtn");
+const goodEventBtn = document.getElementById("goodEventBtn");
+
+const updateSkills = (update) => {
+  if (update == "chay" && chayLvl < 20) {
+    if (balance >= updatesCost[chayLvl]) {
+      balance -= updatesCost[chayLvl];
+      updateBalance();
+      chayLvl++;
+      chay += chayPlus;
+      chayNode.textContent = `${chay}%`;
+      chayLvl < 20
+        ? (chayBtn.textContent = `${updatesCost[chayLvl]} ₽`)
+        : (chayBtn.textContent = "мах");
+      chayProgress += 5;
+      document.querySelector(
+        ".item-chance"
+      ).style.background = `linear-gradient(90deg, var(--blue) ${chayProgress}%, white 0%)`;
+    } else {
+      chayBtn.style.backgroundColor = "var(--danger)";
+      setTimeout(() => {
+        chayBtn.style.backgroundColor = "var(--green)";
+      }, 300);
+    }
+  } else if (update == "speed" && speedLvl < 20) {
+    if (balance >= updatesCost[speedLvl]) {
+      balance -= updatesCost[speedLvl];
+      updateBalance();
+      speedLvl++;
+      speed += speedPlus;
+      speedNode.textContent = `${speed}%`;
+      speedLvl < 20
+        ? (speedBtn.textContent = `${updatesCost[speedLvl]} ₽`)
+        : (speedBtn.textContent = "мах");
+      speedProgress += 5;
+      document.querySelector(
+        ".item-speed"
+      ).style.background = `linear-gradient(90deg, var(--blue) ${speedProgress}%, white 0%)`;
+    } else {
+      speedBtn.style.backgroundColor = "var(--danger)";
+      setTimeout(() => {
+        speedBtn.style.backgroundColor = "var(--green)";
+      }, 300);
+    }
+  } else if (update == "upBalance" && upBalanceLvl < 20) {
+    if (balance >= updatesCost[upBalanceLvl]) {
+      balance -= updatesCost[upBalanceLvl];
+      updateBalance();
+      upBalanceLvl++;
+      upBalance += upBalancePlus;
+      upBalanceNode.textContent = `${upBalance}%`;
+      upBalanceLvl < 20
+        ? (upBalanceBtn.textContent = `${updatesCost[upBalanceLvl]} ₽`)
+        : (upBalanceBtn.textContent = "мах");
+      upBalanceProgress += 5;
+      document.querySelector(
+        ".item-dohod"
+      ).style.background = `linear-gradient(90deg, var(--blue) ${upBalanceProgress}%, white 0%)`;
+    } else {
+      upBalanceBtn.style.backgroundColor = "var(--danger)";
+      setTimeout(() => {
+        upBalanceBtn.style.backgroundColor = "var(--green)";
+      }, 300);
+    }
+  } else if (update == "krit" && kritLvl < 20) {
+    if (balance >= updatesCost[kritLvl]) {
+      balance -= updatesCost[kritLvl];
+      updateBalance();
+      kritLvl++;
+      krit += kritPlus;
+      kritNode.textContent = `${krit}%`;
+      kritLvl < 20
+        ? (kritBtn.textContent = `${updatesCost[kritLvl]} ₽`)
+        : (kritBtn.textContent = "мах");
+      kritProgress += 5;
+      document.querySelector(
+        ".item-krit"
+      ).style.background = `linear-gradient(90deg, var(--blue) ${kritProgress}%, white 0%)`;
+    } else {
+      kritBtn.style.backgroundColor = "var(--danger)";
+      setTimeout(() => {
+        kritBtn.style.backgroundColor = "var(--green)";
+      }, 300);
+    }
+  } else if (update == "goodEvent" && goodEventLvl < 10) {
+    if (balance >= updatesCostGoodEvent[goodEventLvl]) {
+      balance -= updatesCostGoodEvent[goodEventLvl];
+      updateBalance();
+      goodEventLvl++;
+      goodEvent += goodEventPlus;
+      goodEventNode.textContent = `${goodEvent}%`;
+      goodEventLvl < 10
+        ? (goodEventBtn.textContent = `${updatesCostGoodEvent[goodEventLvl]} ₽`)
+        : (goodEventBtn.textContent = "мах");
+      goodEventProgress += 10;
+      document.querySelector(
+        ".item-luck"
+      ).style.background = `linear-gradient(90deg, var(--blue) ${goodEventProgress}%, white 0%)`;
+    } else {
+      goodEventBtn.style.backgroundColor = "var(--danger)";
+      setTimeout(() => {
+        goodEventBtn.style.backgroundColor = "var(--green)";
+      }, 300);
+    }
+  }
+};
 
 let usingTransport = localStorage.getItem("usingTransport") || "peshy";
 window.addEventListener("DOMContentLoaded", () => {
@@ -200,13 +347,13 @@ const start = () => {
             "none";
 
           let randomForBalance;
-          if (usingTransport == 'peshy') {
+          if (usingTransport == "peshy") {
             randomForBalance = Math.random() * (3 - 1) + 1;
-          } else if (usingTransport == 'velo') {
+          } else if (usingTransport == "velo") {
             randomForBalance = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
-          } else if (usingTransport == 'byke') {
+          } else if (usingTransport == "byke") {
             randomForBalance = Math.floor(Math.random() * (5 - 3 + 1)) + 3;
-          } else if (usingTransport == 'car') {
+          } else if (usingTransport == "car") {
             randomForBalance = Math.floor(Math.random() * (6 - 4 + 1)) + 4;
           }
 
@@ -230,53 +377,87 @@ const start = () => {
 
 balance = 10110;
 
-const buyCharacteristic = (sum, char, plus, time) => {
-  if (char == "stamina" && staminaProcent < 100) {
-    if (balance >= sum) {
-      balance -= sum;
-      updateBalance();
-      staminaProcent += plus;
-      if (staminaProcent > 100) {
-        staminaProcent = 100;
+const buyCharacteristic = (sum, char, plus, duration, timeNodeId) => {
+  const currentProcent = char === "stamina" ? staminaProcent : happyProcent;
+  if (currentProcent >= 100 || balance < sum) return;
+
+  balance -= sum;
+  updateBalance();
+
+  let remainingMs = duration;
+  const display = document.getElementById(timeNodeId);
+  display.textContent = `${Math.ceil(remainingMs / 1000)} сек`;
+
+  const timer = setInterval(() => {
+    remainingMs -= 1000;
+    display.textContent = `${Math.max(0, Math.ceil(remainingMs / 1000))} сек`;
+
+    if (remainingMs <= 0) {
+      clearInterval(timer);
+      display.textContent = `${duration / 1000} сек`
+      if (char === "stamina") {
+        staminaProcent = Math.min(100, staminaProcent + plus);
+      } else {
+        happyProcent = Math.min(100, happyProcent + plus);
       }
       updateCharacteristic();
     }
-  }
-  if (char == "happy" && happyProcent < 100) {
-    if (balance >= sum) {
-      balance -= sum;
-      updateBalance();
-      happyProcent += plus;
-      if (happyProcent > 100) {
-        happyProcent = 100;
-      }
-      updateCharacteristic();
-    }
+  }, 1000);
+};
+
+const useCharacteristic = (char, button) => {
+  const lockButton = (duration) => {
+    button.disabled = true;
+    button.style.backgroundColor = '#42e79a';
+    setTimeout(() => {
+      button.disabled = false;
+      button.style.backgroundColor = 'var(--green)';
+    }, duration);
+  };
+
+  switch (char) {
+    case "sleep":
+      buyCharacteristic(0, "stamina", 5, 8000, "sleepTime");
+      lockButton(8000);
+      break;
+    case "energy":
+      buyCharacteristic(100, "stamina", 15, 3000, "energyTime");
+      lockButton(3000);
+      break;
+    case "sauna":
+      buyCharacteristic(1000, "stamina", 25, 5000, "saunaTime");
+      lockButton(5000);
+      break;
+    case "ukol":
+      buyCharacteristic(2500, "stamina", 50, 2000, "ukolTime");
+      lockButton(2000);
+      break;
+    case "asmr":
+      buyCharacteristic(5000, "stamina", 100, 4000, "asmrTime");
+      lockButton(4000);
+      break;
+    case "tiktok":
+      buyCharacteristic(0, "happy", 5, 8000, "tiktokTime");
+      lockButton(8000);
+      break;
+    case "wb":
+      buyCharacteristic(200, "happy", 15, 3000, "wbTime");
+      lockButton(3000);
+      break;
+    case "sushi":
+      buyCharacteristic(700, "happy", 25, 5000, "sushiTime");
+      lockButton(5000);
+      break;
+    case "friends":
+      buyCharacteristic(1500, "happy", 50, 2000, "friendsTime");
+      lockButton(2000);
+      break;
+    case "restoraunt":
+      buyCharacteristic(3000, "happy", 100, 4000, "restorauntTime");
+      lockButton(4000);
+      break;
   }
 };
 
-const useCharacteristic = (char) => {
-  if (char == "sleep") {
-    buyCharacteristic(0, "stamina", 5);
-  } else if (char == "energy") {
-    buyCharacteristic(100, "stamina", 15);
-  } else if (char == "sauna") {
-    buyCharacteristic(1000, "stamina", 25);
-  } else if (char == "ukol") {
-    buyCharacteristic(2500, "stamina", 50);
-  } else if (char == "asmr") {
-    buyCharacteristic(5000, "stamina", 100);
-  } else if (char == "tiktok") {
-    buyCharacteristic(0, "happy", 5);
-  } else if (char == "wb") {
-    buyCharacteristic(200, "happy", 15);
-  } else if (char == "sushi") {
-    buyCharacteristic(700, "happy", 25);
-  } else if (char == "friends") {
-    buyCharacteristic(1500, "happy", 50);
-  } else if (char == "restoraunt") {
-    buyCharacteristic(3000, "happy", 100);
-  }
-};
 
 balance = 500000;

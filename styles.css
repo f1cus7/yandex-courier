@@ -400,6 +400,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: .3s;
 }
 
 .characteristic-balance {
@@ -425,23 +426,23 @@ body {
 }
 
 .item-chance {
-  background: linear-gradient(90deg, var(--blue) 10%, white 0%);
+  background: linear-gradient(90deg, var(--blue) 0%, white 0%);
 }
 
 .item-speed {
-  background: linear-gradient(90deg, var(--blue) 25%, white 0%);
+  background: linear-gradient(90deg, var(--blue) 0%, white 0%);
 }
 
 .item-dohod {
-  background: linear-gradient(90deg, var(--blue) 40%, white 0%);
+  background: linear-gradient(90deg, var(--blue) 0%, white 0%);
 }
 
 .item-krit {
-  background: linear-gradient(90deg, var(--blue) 60%, white 0%);
+  background: linear-gradient(90deg, var(--blue) 0%, white 0%);
 }
 
 .item-luck {
-  background: linear-gradient(90deg, var(--blue) 100%, white 0%);
+  background: linear-gradient(90deg, var(--blue) 0%, white 0%);
 }
 
 .modalStartBtn {

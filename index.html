@@ -175,10 +175,10 @@
               <p>Выспаться</p>
             </div>
             <div class="characteristic-time-container">
-              <p>8 сек</p>
+              <p id="sleepTime">8 сек</p>
               <p class="p-stamina-color">+5%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('sleep')">0 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('sleep', this)">0 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -192,10 +192,10 @@
               <p>Выпить энергетик</p>
             </div>
             <div class="characteristic-time-container">
-              <p>3 сек</p>
+              <p id="energyTime">3 сек</p>
               <p class="p-stamina-color">+15%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('energy')">100 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('energy', this)">100 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -205,10 +205,10 @@
               <p>Сходить в сауну</p>
             </div>
             <div class="characteristic-time-container">
-              <p>5 сек</p>
+              <p id="saunaTime">5 сек</p>
               <p class="p-stamina-color">+25%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('sauna')">1,000 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('sauna', this)">1,000 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -218,10 +218,10 @@
               <p>Укол бодрости</p>
             </div>
             <div class="characteristic-time-container">
-              <p>2 сек</p>
+              <p id="ukolTime">2 сек</p>
               <p class="p-stamina-color">+50%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('ukol')">2,500 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('ukol', this)">2,500 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -231,10 +231,10 @@
               <p>ASMR коуча</p>
             </div>
             <div class="characteristic-time-container">
-              <p>5 сек</p>
+              <p id="asmrTime">4 сек</p>
               <p class="p-stamina-color">+100%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('asmr')">5,000 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('asmr', this)">5,000 ₽</button>
           </div>
         </div>
       </div>
@@ -268,10 +268,10 @@
               <p>Посмотреть tik-tok</p>
             </div>
             <div class="characteristic-time-container">
-              <p>8 сек</p>
+              <p id="tiktokTime">8 сек</p>
               <p class="p-happy-color">+5%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('tiktok')">0 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('tiktok', this)">0 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -281,10 +281,10 @@
               <p>Заказать безделушки</p>
             </div>
             <div class="characteristic-time-container">
-              <p>3 сек</p>
+              <p id="wbTime">3 сек</p>
               <p class="p-happy-color">+15%</p>
             </div>
-            <button class="characteristic-btn"  onclick="useCharacteristic('wb')">200 ₽</button>
+            <button class="characteristic-btn"  onclick="useCharacteristic('wb', this)">200 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -294,10 +294,10 @@
               <p>Купить роллов</p>
             </div>
             <div class="characteristic-time-container">
-              <p>5 сек</p>
+              <p id="sushiTime">5 сек</p>
               <p class="p-happy-color">+25%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('sushi')">700 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('sushi', this)">700 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -307,10 +307,10 @@
               <p>Встретиться с друзьями</p>
             </div>
             <div class="characteristic-time-container">
-              <p>2 сек</p>
+              <p id="friendsTime">2 сек</p>
               <p class="p-happy-color">+50%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('friends')">1,500 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('friends', this)">1,500 ₽</button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -324,10 +324,10 @@
               <p>Сходить в ресторан</p>
             </div>
             <div class="characteristic-time-container">
-              <p>5 сек</p>
+              <p id="restorauntTime">4 сек</p>
               <p class="p-happy-color">+100%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('restoraunt')">3,000 ₽</button>
+            <button class="characteristic-btn" onclick="useCharacteristic('restoraunt', this)">3,000 ₽</button>
           </div>
         </div>
       </div>
@@ -361,10 +361,10 @@
               <p>Шанс на чаевые</p>
             </div>
             <div class="characteristic-time-container">
-              <p>5%</p>
+              <p id="chayNode">0%</p>
               <p class="p-update-color">+2,5%</p>
             </div>
-            <button class="characteristic-btn">250 ₽</button>
+            <button class="characteristic-btn" onclick="updateSkills('chay')" id="chayBtn">250 ₽</button>
           </div>
           <div class="characteristic-item item-speed">
             <div class="characteristic-img-container">
@@ -374,10 +374,10 @@
               <p>Скорость доставки</p>
             </div>
             <div class="characteristic-time-container">
-              <p>0%</p>
+              <p id="speedNode">0%</p>
               <p class="p-update-color">+2,5%</p>
             </div>
-            <button class="characteristic-btn">250 ₽</button>
+            <button class="characteristic-btn" onclick="updateSkills('speed')" id="speedBtn">250 ₽</button>
           </div>
           <div class="characteristic-item item-dohod">
             <div class="characteristic-img-container">
@@ -387,10 +387,10 @@
               <p>Повышение дохода</p>
             </div>
             <div class="characteristic-time-container">
-              <p>0%</p>
+              <p id="upBalanceNode">0%</p>
               <p class="p-update-color">+1%</p>
             </div>
-            <button class="characteristic-btn">250 ₽</button>
+            <button class="characteristic-btn" onclick="updateSkills('upBalance')" id="upBalanceBtn">250 ₽</button>
           </div>
           <div class="characteristic-item item-krit">
             <div class="characteristic-img-container">
@@ -400,10 +400,10 @@
               <p>шанс на Крит x2</p>
             </div>
             <div class="characteristic-time-container">
-              <p>0%</p>
+              <p id="kritNode">0%</p>
               <p class="p-update-color">+0,5%</p>
             </div>
-            <button class="characteristic-btn">250 ₽</button>
+            <button class="characteristic-btn" onclick="updateSkills('krit')" id="kritBtn">250 ₽</button>
           </div>
           <div class="characteristic-item item-luck">
             <div class="characteristic-img-container">
@@ -417,10 +417,10 @@
               <p>Удачное событие</p>
             </div>
             <div class="characteristic-time-container">
-              <p>25%</p>
+              <p id="goodEventNode">25%</p>
               <p class="p-update-color">+2,5%</p>
             </div>
-            <button class="characteristic-btn">250 ₽</button>
+            <button class="characteristic-btn" onclick="updateSkills('goodEvent')" id="goodEventBtn">250 ₽</button>
           </div>
         </div>
       </div>
