@@ -7,8 +7,8 @@ let movementVelo = localStorage.getItem("movementVelo");
 let movementByke = localStorage.getItem("movementByke");
 let movementCar = localStorage.getItem("movementCar");
 balance += 500;
-let happyProcent = 10;
-let staminaProcent = 10;
+let happyProcent = 100;
+let staminaProcent = 100;
 
 let chay = 0;
 let chayPlus = 2.5;
@@ -42,6 +42,18 @@ let updatesCost = [
 let updatesCostGoodEvent = [
   250, 750, 1500, 2000, 2500, 3500, 5500, 8000, 11000, 15000,
 ];
+
+const eventsPercent = {
+  nothing: 50,
+  good: 25,
+  bad: 25,
+};
+
+const eventPercentFunc = () => {
+  eventsPercent.nothing -= 1.25;
+  eventsPercent.good += 2.5;
+  eventsPercent.bad -= 1.25;
+};
 
 const chayNode = document.getElementById("chayNode");
 const speedNode = document.getElementById("speedNode");
@@ -138,7 +150,9 @@ const updateSkills = (update) => {
   } else if (update == "goodEvent" && goodEventLvl < 10) {
     if (balance >= updatesCostGoodEvent[goodEventLvl]) {
       balance -= updatesCostGoodEvent[goodEventLvl];
+      eventPercentFunc();
       updateBalance();
+
       goodEventLvl++;
       goodEvent += goodEventPlus;
       goodEventNode.textContent = `${goodEvent}%`;
@@ -294,6 +308,7 @@ const btnBuyTransport = (modeOfTransport) => {
 // localStorage.clear()
 
 const start = () => {
+  let randomStart;
   if (firstTime) {
     startModal.style.display = "flex";
     document.getElementById("closeModalStart").addEventListener("click", () => {
@@ -309,8 +324,7 @@ const start = () => {
     if (staminaProcent >= 25 && happyProcent >= 25) {
       document.querySelector(".main-section-start").style.display = "none";
       document.querySelector(".main-section-deliver").style.display = "flex";
-      // let random = Math.floor(Math.random() * (240 - 60 + 1)) + 60;
-      let random = 15;
+      let random = Math.floor(Math.random() * (240 - 60 + 1)) + 60;
       document.querySelector(".main-section-deliver").innerHTML = `
     <div class="time">
             <p>Осталось времени на заказе: <span class="time-span p-happy-color">0 мин 00 сек</span>
@@ -319,7 +333,7 @@ const start = () => {
             <button class="speed-deliver" onclick="">Ускорить доставку</button>
           </div>
     `;
-      let randomStart = random;
+      randomStart = random;
       const timeSpan = document.querySelector(".time-span");
 
       function updateTime(seconds) {
@@ -336,19 +350,27 @@ const start = () => {
 
       updateTime(random);
 
+      // ивент
+      const intervalEvent = setInterval(() => {
+        if (random <= randomStart / 2) {
+          clearInterval(intervalEvent);
+        }
+      }, 1000);
+
       const timer = setInterval(() => {
         random--;
         if (random >= 0) {
           updateTime(random);
         } else {
           clearInterval(timer);
+
           document.querySelector(".main-section-start").style.display = "flex";
           document.querySelector(".main-section-deliver").style.display =
             "none";
 
           let randomForBalance;
           if (usingTransport == "peshy") {
-            randomForBalance = Math.random() * (3 - 1) + 1;
+            randomForBalance = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
           } else if (usingTransport == "velo") {
             randomForBalance = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
           } else if (usingTransport == "byke") {
@@ -356,14 +378,53 @@ const start = () => {
           } else if (usingTransport == "car") {
             randomForBalance = Math.floor(Math.random() * (6 - 4 + 1)) + 4;
           }
-
-          balance += Number((randomStart * randomForBalance).toFixed());
+          // крит
+          if (Number((Math.random() * 100).toFixed(2)) <= krit) {
+            balance += Number((randomStart * randomForBalance * 2).toFixed());
+            updateBalance();
+            document.querySelector(".krit").style.opacity = 100;
+            document.querySelector(".krit").style.transform = "scale(1.3)";
+            setTimeout(() => {
+              document.querySelector(".krit").style.opacity = 0;
+              document.querySelector(".krit").style.transform = "scale(1.0)";
+            }, 300);
+          } else {
+            balance += Number((randomStart * randomForBalance).toFixed());
+            updateBalance();
+          }
+          // чай
+          let randomForChay = Math.floor(Math.random() * (25 - 5 + 1)) + 5;
+          if (Number((Math.random() * 100).toFixed(2)) <= chay) {
+            const base = randomStart * randomForBalance * 2;
+            const tipMultiplier = randomForChay / 100 + 1;
+            const withTip = Number((base * tipMultiplier).toFixed());
+            const withoutTip = Number(base.toFixed());
+            const difference = withTip - withoutTip;
+            balance += difference;
+            balance += base;
+            updateBalance();
+            document.querySelector(".chay").style.opacity = 100;
+            document.querySelector(".chay").style.transform = "scale(1.3)";
+            document.querySelector(
+              ".chay"
+            ).innerHTML = `чаевые<br>${difference}`;
+            setTimeout(() => {
+              document.querySelector(".chay").style.opacity = 0;
+              document.querySelector(".chay").style.transform = "scale(1.0)";
+            }, 300);
+          }
+          // апБаланс
+          const QWEbase = randomStart * randomForBalance * 2;
+          const QWEtipMultiplier = QWEbase * (1 + upBalance / 100);
+          balance += Number((QWEtipMultiplier - QWEbase).toFixed());
           updateBalance();
-          staminaProcent -= (randomStart / 10) * 2;
-          happyProcent -= (randomStart / 10) * 2.5;
+          // минус характеристики
+          updateBalance();
+          staminaProcent -= (randomStart / 10) * 1.5;
+          happyProcent -= (randomStart / 10) * 1.8;
           updateCharacteristic();
         }
-      }, 1000);
+      }, 1000 - (1000 * speed) / 100);
     } else {
       document.querySelector(".btn-start").style.backgroundColor =
         "var(--danger)";
@@ -394,7 +455,7 @@ const buyCharacteristic = (sum, char, plus, duration, timeNodeId) => {
 
     if (remainingMs <= 0) {
       clearInterval(timer);
-      display.textContent = `${duration / 1000} сек`
+      display.textContent = `${duration / 1000} сек`;
       if (char === "stamina") {
         staminaProcent = Math.min(100, staminaProcent + plus);
       } else {
@@ -408,10 +469,10 @@ const buyCharacteristic = (sum, char, plus, duration, timeNodeId) => {
 const useCharacteristic = (char, button) => {
   const lockButton = (duration) => {
     button.disabled = true;
-    button.style.backgroundColor = '#42e79a';
+    button.style.backgroundColor = "#42e79a";
     setTimeout(() => {
       button.disabled = false;
-      button.style.backgroundColor = 'var(--green)';
+      button.style.backgroundColor = "var(--green)";
     }, duration);
   };
 
@@ -459,5 +520,4 @@ const useCharacteristic = (char, button) => {
   }
 };
 
-
-balance = 500000;
+balance = 100000;
