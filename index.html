@@ -11,13 +11,14 @@
     />
   </head>
   <body>
-    <div id="modalStart" style="display: none;">
+    <div id="modalStart" style="display: none">
       <div class="modal-content-start">
         <p class="modalMusicP1">Добро пожаловать в Яндекс курьер: кликер!</p>
         <p class="modalMusicP2">Хотите включить музыку?</p>
         <p class="modalMusicP3">Вы всегда можете включить её в настройках.</p>
         <div>
-        <button class="btn-music" id="btn-music-no">Нет</button><button class="btn-music" id="btn-music-yes">Да</button>
+          <button class="btn-music" id="btn-music-no">Нет</button
+          ><button class="btn-music" id="btn-music-yes">Да</button>
         </div>
       </div>
     </div>
@@ -166,17 +167,53 @@
       <div class="modal-content">
         <div><div class="modal-settings-close">&times;</div></div>
 
-        <button class="btn-how-to-play">Как играть?</button>
+        <button class="btn-how-to-play" onclick="howToPlay()">
+          Как играть?
+        </button>
         <div>
           <p class="p-volume">Громкость музыки</p>
-          <input type="range" class="input-volume" id="inputMusic"/>
+          <input type="range" class="input-volume" id="inputMusic" />
         </div>
         <div>
           <p class="p-volume">Громкость звуков</p>
-          <input type="range" class="input-volume" id="inputZvuk"/>
+          <input type="range" class="input-volume" id="inputZvuk" />
         </div>
       </div>
     </div>
+    <!-- как играть модалка -->
+    <div id="modalHowToPlay" class="modal">
+      <div class="modal-content-howToPlay">
+        <h1 style="text-align: center; margin-top: 2vh; font-size: 7vw">
+          Как играть
+        </h1>
+        <p style="font-size: 3vw; margin: 1vw auto 3vw; text-align: center">
+          Время прочтения: 1 минута
+        </p>
+        <p class="text-how-to-play">
+          <span style="font-weight: bold">🎯 Цель игры </span><br />
+          Ты — курьер. Твоя миссия — доставлять заказы и развивать свои навыки.
+          <br /><br />
+          <span style="font-weight: bold">🧠 Как всё работает:</span> <br />🏃‍♂️
+          Во время доставки тратится выносливость и счастье. Их можно восполнить
+          в специальных вкладках. <img src="images/stamina.png" alt="" style="width: 4vw; border-radius: 1vw;">  <img src="images/happy.png" alt="" style="width: 4vw; border-radius: 1vw;"> Если у вас будет
+          менее 25% любой характеристики — вы не сможете выйти на заказы.<br />
+          🎲 В пути с тобой могут случаться события — как <span style="color: var(--green);">приятные</span> бонусы, так и
+          неожиданные <span style="color: var(--red);">неприятности</span>. Будь готов ко всему! <br />
+          💰 Заработав достаточно, ты сможешь сменить транспорт <img src="images/transport.png" alt="" style="width: 4vw; border-radius: 1vw;"> — это даст буст
+          к доходу и скорости. <br />
+          📈 Прокачивай навыки во вкладке улучшений и становись сильнее,
+          быстрее, круче. <br />
+          🎵 В настройках можно настроить громкость музыки и звуков, чтобы
+          играть было максимально комфортно. <br />
+          💾 Прогресс сохраняется автоматически, так что ты всегда сможешь
+          вернуться и продолжить игру, когда захочешь.
+        </p>
+        <button class="btn-how-to-play-end" onclick="modalEnd()">
+          Я все понял!
+        </button>
+      </div>
+    </div>
+
     <!-- выносливость -->
     <div class="stamina-container d-none">
       <div class="characteristics-container">

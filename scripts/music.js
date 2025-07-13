@@ -17,8 +17,9 @@ audioMusic.volume = volume;
 const input = document.getElementById("inputMusic");
 input.value = volume * 100;
 
-const startMusic = () => {
+const startMusic = (volume) => {
   audioMusic.play();
+  audioMusic.volume = volume
 };
 
 input.addEventListener("input", (e) => {
@@ -31,7 +32,7 @@ const btnMusicNo = document.getElementById("btn-music-no");
 const btnMusicYes = document.getElementById("btn-music-yes");
 
 btnMusicNo.addEventListener("click", () => {
-  startMusic(0.0);
+  startMusic(0);
   document.getElementById("modalStart").style.display = "none";
   localStorage.setItem("musicFirst", true);
 });
