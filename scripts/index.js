@@ -35,6 +35,83 @@ let goodEventPlus = 2.5;
 let goodEventLvl = 0;
 let goodEventProgress = 0;
 
+let events = {
+  happyEvent: {
+    speed: {
+      chance: 1,
+      img: "images/event1.png",
+      color: "var(--green)",
+      text: "Вам повезло, вы доставили заказ очень быстро, за это компания предоставила вам бонус в размере: ",
+      btn: "супер!",
+    },
+    goodHappy: {
+      chance: 2,
+      img: "images/event2.png",
+      color: "var(--green)",
+      text: "У вас на лице сверкает улыбка, вы заслужили чаевые: ",
+      btn: "супер!",
+    },
+    wind: {
+      chance: 3,
+      img: "images/event1.png",
+      color: "var(--green)",
+      text: "Весь путь ветер вас подгонял, заказ доставлен быстро, за скорость вы получили: ",
+      btn: "супер!",
+    },
+    fragile: {
+      chance: 4,
+      img: "images/event4.png",
+      color: "var(--green)",
+      text: "Вы везли хрупкий заказ, и доставили его очень аккуратно, вам положен бонус: ",
+      btn: "супер!",
+    },
+    house: {
+      chance: 5,
+      img: "images/event5.png",
+      color: "var(--green)",
+      text: "Заказ оказался в этом же доме, не часто доставка занимает несколько минут, за это вы получаете бонус: ",
+      btn: "супер!",
+    },
+  },
+  badEvent: {
+    speed: {
+      chance: 1,
+      img: "images/event6.png",
+      color: "var(--danger)",
+      text: "К сожалению, вы везли заказ слишком долго, у вас вычли часть оплаты: -",
+      btn: "жаль",
+    },
+    badHappy: {
+      chance: 2,
+      img: "images/event7.png",
+      color: "var(--danger)",
+      text: "Вы встретили клиента со злым лицом, он написал жалобу, у вас вычли: -",
+      btn: "жаль",
+    },
+    wind: {
+      chance: 3,
+      img: "images/event8.png",
+      color: "var(--danger)",
+      text: "Весь путь ветер был будто бы против вас, вы очень сильно опоздали, у вас вычли часть оплаты: -",
+      btn: "жаль",
+    },
+    fragile: {
+      chance: 4,
+      img: "images/event9.png",
+      color: "var(--danger)",
+      text: "Все разбилось... В следующий раз нужно аккуратней с хрупкими заказами, оплату за заказ вы взяли на себя: -",
+      btn: "жаль",
+    },
+    byke: {
+      chance: 5,
+      img: "images/event10.png",
+      color: "var(--danger)",
+      text: "Ваше транспортное средство сломалось, как не вовремя. Жаль, что разбираться в этом никто не будет, у вас вычли: -",
+      btn: "жаль",
+    },
+  },
+};
+
 let updatesCost = [
   250, 300, 450, 550, 650, 750, 850, 950, 1150, 1300, 1500, 2000, 2500, 3000,
   4000, 3800, 5000, 6000, 7000, 8000,
@@ -55,6 +132,76 @@ const eventPercentFunc = () => {
   eventsPercent.bad -= 1.25;
 };
 
+const audioSuccess = new Audio("/audio/success.mp3");
+let savedVolumeSuccess = localStorage.getItem("musicSuccess");
+let volumeSuccess = savedVolumeSuccess ? parseFloat(savedVolumeSuccess) : 0.5;
+audioSuccess.volume = volumeSuccess;
+const inputZvuk = document.getElementById("inputZvuk");
+inputZvuk.value = volumeSuccess * 100;
+
+inputZvuk.addEventListener("input", (e) => {
+  const volume = e.target.value / 100;
+  audioSuccess.volume = volume;
+  localStorage.setItem("musicSuccess", volume);
+});
+const zvukPlay = () => {
+  audioSuccess.volume = parseFloat(localStorage.getItem("musicSuccess")) || 0.5;
+  audioSuccess.play();
+};
+
+const eventFunction = (randomNumber) => {
+  const { nothing, good, bad } = eventsPercent;
+  let resultEvent;
+  if (randomNumber < nothing) {
+    resultEvent = "nothing";
+  } else if (randomNumber < nothing + good) {
+    resultEvent = "good";
+  } else {
+    resultEvent = "bad";
+  }
+
+  if (resultEvent === "good" || resultEvent === "bad") {
+    const randomEventNumber = Math.floor(Math.random() * 5) + 1;
+
+    const currentEvents =
+      resultEvent === "good" ? events.happyEvent : events.badEvent;
+
+    const foundEvent = Object.values(currentEvents).find(
+      (e) => e.chance === randomEventNumber
+    );
+
+    if (foundEvent) {
+      showModal(foundEvent, resultEvent);
+    }
+  }
+};
+
+function showModal(event, resultEvent) {
+  const modal = document.createElement("div");
+  modal.classList.add("event-modal");
+  let percent = balance / 100 > 0 ? balance / 100 : 0;
+
+  modal.innerHTML = `
+    <div class="event-modal-content" style="--event-color: ${event.color}">
+      <img src="${event.img}" alt="event image" class="event-img">
+      <p class="event-text">${event.text} <b class="eventMoney">${percent} ₽</b></p>
+      <button class="event-btn">${event.btn}</button>
+    </div>
+  `;
+  if (resultEvent == "good") {
+    balance += Number(percent.toFixed());
+    updateBalance();
+  } else if (resultEvent == "bad") {
+    balance -= Number(percent.toFixed());
+    updateBalance();
+  }
+  document.body.appendChild(modal);
+
+  modal.querySelector(".event-btn").addEventListener("click", () => {
+    modal.remove();
+  });
+}
+
 const chayNode = document.getElementById("chayNode");
 const speedNode = document.getElementById("speedNode");
 const upBalanceNode = document.getElementById("upBalanceNode");
@@ -70,6 +217,7 @@ const updateSkills = (update) => {
   if (update == "chay" && chayLvl < 20) {
     if (balance >= updatesCost[chayLvl]) {
       balance -= updatesCost[chayLvl];
+      zvukPlay();
       updateBalance();
       chayLvl++;
       chay += chayPlus;
@@ -91,6 +239,7 @@ const updateSkills = (update) => {
     if (balance >= updatesCost[speedLvl]) {
       balance -= updatesCost[speedLvl];
       updateBalance();
+      zvukPlay();
       speedLvl++;
       speed += speedPlus;
       speedNode.textContent = `${speed}%`;
@@ -111,6 +260,7 @@ const updateSkills = (update) => {
     if (balance >= updatesCost[upBalanceLvl]) {
       balance -= updatesCost[upBalanceLvl];
       updateBalance();
+      zvukPlay();
       upBalanceLvl++;
       upBalance += upBalancePlus;
       upBalanceNode.textContent = `${upBalance}%`;
@@ -131,6 +281,7 @@ const updateSkills = (update) => {
     if (balance >= updatesCost[kritLvl]) {
       balance -= updatesCost[kritLvl];
       updateBalance();
+      zvukPlay();
       kritLvl++;
       krit += kritPlus;
       kritNode.textContent = `${krit}%`;
@@ -152,6 +303,7 @@ const updateSkills = (update) => {
       balance -= updatesCostGoodEvent[goodEventLvl];
       eventPercentFunc();
       updateBalance();
+      zvukPlay();
 
       goodEventLvl++;
       goodEvent += goodEventPlus;
@@ -256,6 +408,7 @@ const btnBuyTransport = (modeOfTransport) => {
     } else {
       balance -= 10000;
       updateBalance();
+      zvukPlay();
       document.getElementById("btn-velo").style.backgroundColor = "var(--blue)";
       document.getElementById("btn-velo").textContent = "Активен";
       movementVelo = true;
@@ -275,6 +428,7 @@ const btnBuyTransport = (modeOfTransport) => {
     } else {
       balance -= 10000;
       updateBalance();
+      zvukPlay();
       document.getElementById("btn-byke").style.backgroundColor = "var(--blue)";
       document.getElementById("btn-byke").textContent = "Активен";
       movementByke = true;
@@ -294,6 +448,7 @@ const btnBuyTransport = (modeOfTransport) => {
     } else {
       balance -= 10000;
       updateBalance();
+      zvukPlay();
       document.getElementById("btn-car").style.backgroundColor = "var(--blue)";
       document.getElementById("btn-car").textContent = "Активен";
       movementCar = true;
@@ -324,7 +479,8 @@ const start = () => {
     if (staminaProcent >= 25 && happyProcent >= 25) {
       document.querySelector(".main-section-start").style.display = "none";
       document.querySelector(".main-section-deliver").style.display = "flex";
-      let random = Math.floor(Math.random() * (240 - 60 + 1)) + 60;
+      // let random = Math.floor(Math.random() * (240 - 60 + 1)) + 60;
+      let random = 15;
       document.querySelector(".main-section-deliver").innerHTML = `
     <div class="time">
             <p>Осталось времени на заказе: <span class="time-span p-happy-color">0 мин 00 сек</span>
@@ -345,6 +501,9 @@ const start = () => {
         if (random > 2) {
           random -= 1;
           updateTime(random);
+          const clickSound = new Audio("/audio/click.mp3");
+          clickSound.volume = 0.50;
+          clickSound.play();
         }
       });
 
@@ -354,6 +513,7 @@ const start = () => {
       const intervalEvent = setInterval(() => {
         if (random <= randomStart / 2) {
           clearInterval(intervalEvent);
+          eventFunction(Number((Math.random() * 100.001).toFixed(2)));
         }
       }, 1000);
 
@@ -436,15 +596,13 @@ const start = () => {
   }
 };
 
-balance = 10110;
-
 const buyCharacteristic = (sum, char, plus, duration, timeNodeId) => {
   const currentProcent = char === "stamina" ? staminaProcent : happyProcent;
   if (currentProcent >= 100 || balance < sum) return;
 
   balance -= sum;
   updateBalance();
-
+  zvukPlay();
   let remainingMs = duration;
   const display = document.getElementById(timeNodeId);
   display.textContent = `${Math.ceil(remainingMs / 1000)} сек`;
@@ -480,42 +638,52 @@ const useCharacteristic = (char, button) => {
     case "sleep":
       buyCharacteristic(0, "stamina", 5, 8000, "sleepTime");
       lockButton(8000);
+      zvukPlay();
       break;
     case "energy":
       buyCharacteristic(100, "stamina", 15, 3000, "energyTime");
       lockButton(3000);
+      zvukPlay();
       break;
     case "sauna":
       buyCharacteristic(1000, "stamina", 25, 5000, "saunaTime");
       lockButton(5000);
+      zvukPlay();
       break;
     case "ukol":
       buyCharacteristic(2500, "stamina", 50, 2000, "ukolTime");
       lockButton(2000);
+      zvukPlay();
       break;
     case "asmr":
       buyCharacteristic(5000, "stamina", 100, 4000, "asmrTime");
       lockButton(4000);
+      zvukPlay();
       break;
     case "tiktok":
       buyCharacteristic(0, "happy", 5, 8000, "tiktokTime");
       lockButton(8000);
+      zvukPlay();
       break;
     case "wb":
       buyCharacteristic(200, "happy", 15, 3000, "wbTime");
       lockButton(3000);
+      zvukPlay();
       break;
     case "sushi":
       buyCharacteristic(700, "happy", 25, 5000, "sushiTime");
       lockButton(5000);
+      zvukPlay();
       break;
     case "friends":
       buyCharacteristic(1500, "happy", 50, 2000, "friendsTime");
       lockButton(2000);
+      zvukPlay();
       break;
     case "restoraunt":
       buyCharacteristic(3000, "happy", 100, 4000, "restorauntTime");
       lockButton(4000);
+      zvukPlay();
       break;
   }
 };

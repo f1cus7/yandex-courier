@@ -11,6 +11,17 @@
     />
   </head>
   <body>
+    <div id="modalStart" style="display: none;">
+      <div class="modal-content-start">
+        <p class="modalMusicP1">Добро пожаловать в Яндекс курьер: кликер!</p>
+        <p class="modalMusicP2">Хотите включить музыку?</p>
+        <p class="modalMusicP3">Вы всегда можете включить её в настройках.</p>
+        <div>
+        <button class="btn-music" id="btn-music-no">Нет</button><button class="btn-music" id="btn-music-yes">Да</button>
+        </div>
+      </div>
+    </div>
+
     <div class="header">
       <div class="div-stamina"><span id="node-stamina"></span>%</div>
       <div class="div-happy"><span id="node-happy"></span>%</div>
@@ -32,12 +43,14 @@
       </div>
       <div class="main-section">
         <div class="main-section-start">
-        <img src="images/courier-start.png" alt="" class="img-courier-start" />
-        <button class="btn-start" onclick="start()">начать</button>
+          <img
+            src="images/courier-start.png"
+            alt=""
+            class="img-courier-start"
+          />
+          <button class="btn-start" onclick="start()">начать</button>
         </div>
-        <div class="main-section-deliver" style="display: none;">
-          
-        </div>
+        <div class="main-section-deliver" style="display: none"></div>
       </div>
       <div class="btns-container-charakteristic">
         <button
@@ -80,7 +93,11 @@
             <br />
             <p class="transport-description">Ваш путь начинается здесь</p>
           </div>
-          <button class="btn-buy-transport" id="btn-peshy" onclick="btnTransportPeshy()">
+          <button
+            class="btn-buy-transport"
+            id="btn-peshy"
+            onclick="btnTransportPeshy()"
+          >
             <span class="span-buy-transport">бесплатно</span>
           </button>
         </div>
@@ -94,7 +111,11 @@
             <br />
             <p class="transport-description">На велосипеде будет легче</p>
           </div>
-          <button class="btn-buy-transport" id="btn-velo" onclick="btnBuyTransport('btn-velo')">
+          <button
+            class="btn-buy-transport"
+            id="btn-velo"
+            onclick="btnBuyTransport('btn-velo')"
+          >
             <span class="span-buy-transport">10,000 ₽</span>
           </button>
         </div>
@@ -112,7 +133,11 @@
             <br />
             <p class="transport-description">Надежней прошлого</p>
           </div>
-          <button class="btn-buy-transport" id="btn-byke" onclick="btnBuyTransport('btn-byke')">
+          <button
+            class="btn-buy-transport"
+            id="btn-byke"
+            onclick="btnBuyTransport('btn-byke')"
+          >
             <span class="span-buy-transport">40,000 ₽</span>
           </button>
         </div>
@@ -126,7 +151,11 @@
             <br />
             <p class="transport-description">четыре колеса лучше двух</p>
           </div>
-          <button class="btn-buy-transport" id="btn-car" onclick="btnBuyTransport('btn-car')">
+          <button
+            class="btn-buy-transport"
+            id="btn-car"
+            onclick="btnBuyTransport('btn-car')"
+          >
             <span class="span-buy-transport">80,000 ₽</span>
           </button>
         </div>
@@ -140,11 +169,11 @@
         <button class="btn-how-to-play">Как играть?</button>
         <div>
           <p class="p-volume">Громкость музыки</p>
-          <input type="range" class="input-volume" />
+          <input type="range" class="input-volume" id="inputMusic"/>
         </div>
         <div>
           <p class="p-volume">Громкость звуков</p>
-          <input type="range" class="input-volume" />
+          <input type="range" class="input-volume" id="inputZvuk"/>
         </div>
       </div>
     </div>
@@ -180,7 +209,12 @@
               <p id="sleepTime">8 сек</p>
               <p class="p-stamina-color">+5%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('sleep', this)">0 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('sleep', this)"
+            >
+              0 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -197,7 +231,12 @@
               <p id="energyTime">3 сек</p>
               <p class="p-stamina-color">+15%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('energy', this)">100 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('energy', this)"
+            >
+              100 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -210,7 +249,12 @@
               <p id="saunaTime">5 сек</p>
               <p class="p-stamina-color">+25%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('sauna', this)">1,000 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('sauna', this)"
+            >
+              1,000 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -223,7 +267,12 @@
               <p id="ukolTime">2 сек</p>
               <p class="p-stamina-color">+50%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('ukol', this)">2,500 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('ukol', this)"
+            >
+              2,500 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -236,7 +285,12 @@
               <p id="asmrTime">4 сек</p>
               <p class="p-stamina-color">+100%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('asmr', this)">5,000 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('asmr', this)"
+            >
+              5,000 ₽
+            </button>
           </div>
         </div>
       </div>
@@ -273,7 +327,12 @@
               <p id="tiktokTime">8 сек</p>
               <p class="p-happy-color">+5%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('tiktok', this)">0 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('tiktok', this)"
+            >
+              0 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -286,7 +345,12 @@
               <p id="wbTime">3 сек</p>
               <p class="p-happy-color">+15%</p>
             </div>
-            <button class="characteristic-btn"  onclick="useCharacteristic('wb', this)">200 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('wb', this)"
+            >
+              200 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -299,7 +363,12 @@
               <p id="sushiTime">5 сек</p>
               <p class="p-happy-color">+25%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('sushi', this)">700 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('sushi', this)"
+            >
+              700 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -312,7 +381,12 @@
               <p id="friendsTime">2 сек</p>
               <p class="p-happy-color">+50%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('friends', this)">1,500 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('friends', this)"
+            >
+              1,500 ₽
+            </button>
           </div>
           <div class="characteristic-item">
             <div class="characteristic-img-container">
@@ -329,7 +403,12 @@
               <p id="restorauntTime">4 сек</p>
               <p class="p-happy-color">+100%</p>
             </div>
-            <button class="characteristic-btn" onclick="useCharacteristic('restoraunt', this)">3,000 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="useCharacteristic('restoraunt', this)"
+            >
+              3,000 ₽
+            </button>
           </div>
         </div>
       </div>
@@ -366,7 +445,13 @@
               <p id="chayNode">0%</p>
               <p class="p-update-color">+2,5%</p>
             </div>
-            <button class="characteristic-btn" onclick="updateSkills('chay')" id="chayBtn">250 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="updateSkills('chay')"
+              id="chayBtn"
+            >
+              250 ₽
+            </button>
           </div>
           <div class="characteristic-item item-speed">
             <div class="characteristic-img-container">
@@ -379,7 +464,13 @@
               <p id="speedNode">0%</p>
               <p class="p-update-color">+2,5%</p>
             </div>
-            <button class="characteristic-btn" onclick="updateSkills('speed')" id="speedBtn">250 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="updateSkills('speed')"
+              id="speedBtn"
+            >
+              250 ₽
+            </button>
           </div>
           <div class="characteristic-item item-dohod">
             <div class="characteristic-img-container">
@@ -392,7 +483,13 @@
               <p id="upBalanceNode">0%</p>
               <p class="p-update-color">+1%</p>
             </div>
-            <button class="characteristic-btn" onclick="updateSkills('upBalance')" id="upBalanceBtn">250 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="updateSkills('upBalance')"
+              id="upBalanceBtn"
+            >
+              250 ₽
+            </button>
           </div>
           <div class="characteristic-item item-krit">
             <div class="characteristic-img-container">
@@ -405,7 +502,13 @@
               <p id="kritNode">0%</p>
               <p class="p-update-color">+0,5%</p>
             </div>
-            <button class="characteristic-btn" onclick="updateSkills('krit')" id="kritBtn">250 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="updateSkills('krit')"
+              id="kritBtn"
+            >
+              250 ₽
+            </button>
           </div>
           <div class="characteristic-item item-luck">
             <div class="characteristic-img-container">
@@ -422,7 +525,13 @@
               <p id="goodEventNode">25%</p>
               <p class="p-update-color">+2,5%</p>
             </div>
-            <button class="characteristic-btn" onclick="updateSkills('goodEvent')" id="goodEventBtn">250 ₽</button>
+            <button
+              class="characteristic-btn"
+              onclick="updateSkills('goodEvent')"
+              id="goodEventBtn"
+            >
+              250 ₽
+            </button>
           </div>
         </div>
       </div>
@@ -430,15 +539,19 @@
     <!-- модалка начало -->
     <div id="startModal" class="modal">
       <div class="modal-content">
-        <span id="closeModalStart" class="close" style=" margin: 0 0 0 auto;">&times;</span>
+        <span id="closeModalStart" class="close" style="margin: 0 0 0 auto"
+          >&times;</span
+        >
         <p>
           Добро пожаловать в начало вашего пути! Для начала перейдите во вкладку
-           <span class="p-update-color">транспорт</span> и выберите способ передвижения.
+          <span class="p-update-color">транспорт</span> и выберите способ
+          передвижения.
         </p>
         <button class="modalStartBtn" onclick="modalStartBtn()">перейти</button>
       </div>
     </div>
     <script src="scripts/index.js" defer></script>
     <script src="scripts/pages.js" defer></script>
+    <script src="scripts/music.js" defer></script>
   </body>
 </html>
