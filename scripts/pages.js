@@ -10,7 +10,7 @@ const openTransport = () => {
   happy.classList.add("d-none");
   update.classList.add("d-none");
   transport.classList.remove("d-none");
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };
 
 const backToMain = () => {
@@ -19,7 +19,7 @@ const backToMain = () => {
   happy.classList.add("d-none");
   update.classList.add("d-none");
   transport.classList.add("d-none");
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };
 
 const btnStamina = () => {
@@ -28,7 +28,7 @@ const btnStamina = () => {
   happy.classList.add("d-none");
   update.classList.add("d-none");
   transport.classList.add("d-none");
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };
 
 const btnHappy = () => {
@@ -37,7 +37,7 @@ const btnHappy = () => {
   happy.classList.remove("d-none");
   update.classList.add("d-none");
   transport.classList.add("d-none");
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };
 
 const btnUpdate = () => {
@@ -46,7 +46,7 @@ const btnUpdate = () => {
   happy.classList.add("d-none");
   update.classList.remove("d-none");
   transport.classList.add("d-none");
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };
 
 const modal = document.getElementById("myModal");
@@ -56,23 +56,23 @@ const modalHowToPlay = document.getElementById('modalHowToPlay');
 
 const openSettings = () => {
   modal.style.display = "flex";
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };
 
 const howToPlay = () => {
   modal.style.display = "none";
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
   modalHowToPlay.style.display = 'flex';
 };
 
 const modalEnd = () => {
   modalHowToPlay.style.display = "none";
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 }
 
 closeBtn.onclick = () => {
   modal.style.display = "none";
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };
 
 window.onclick = (event) => {
@@ -88,28 +88,28 @@ const nextPage = (page) => {
     happy.classList.remove("d-none");
     update.classList.add("d-none");
     transport.classList.add("d-none");
-    new Audio("/audio/page.mp3").play();
+    new Audio("audio/page.mp3").play();
   } else if (page == "happy") {
     main.classList.add("d-none");
     stamina.classList.add("d-none");
     happy.classList.add("d-none");
     update.classList.remove("d-none");
     transport.classList.add("d-none");
-    new Audio("/audio/page.mp3").play();
+    new Audio("audio/page.mp3").play();
   } else if (page == "update") {
     main.classList.add("d-none");
     stamina.classList.remove("d-none");
     happy.classList.add("d-none");
     update.classList.add("d-none");
     transport.classList.add("d-none");
-    new Audio("/audio/page.mp3").play();
+    new Audio("audio/page.mp3").play();
   } else {
     main.classList.remove("d-none");
     stamina.classList.add("d-none");
     happy.classList.add("d-none");
     update.classList.add("d-none");
     transport.classList.add("d-none");
-    new Audio("/audio/page.mp3").play();
+    new Audio("audio/page.mp3").play();
   }
 };
 
@@ -120,5 +120,5 @@ const modalStartBtn = () => {
   update.classList.add("d-none");
   transport.classList.remove("d-none");
   startModal.style.display = "none";
-  new Audio("/audio/page.mp3").play();
+  new Audio("audio/page.mp3").play();
 };

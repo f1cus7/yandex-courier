@@ -3,7 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Яндекс курьер</title>
+    <title>Я курьер: кликер</title>
+    <script src="/sdk.js" defer onload="initYandexSDK()"></script>
+        <script src="./node_modules/howler/dist/howler.min.js" defer></script>
+    <script defer>
+      function initYandexSDK() {
+        YaGames.init().then((ysdk) => {
+          console.log("Yandex SDK initialized");
+          window.ysdk = ysdk;
+
+          if (ysdk.environment.i18n.lang === "ru") {
+            selectLanguageRussianButtonFunction();
+          } else if (ysdk.environment.i18n.lang === "en") {
+            selectLanguageEnglishButtonFunction();
+          } else if (ysdk.environment.i18n.lang === "zh") {
+            selectLanguageChineseButtonFunction();
+          } else if (ysdk.environment.i18n.lang === "hi") {
+            selectLanguageHindiButtonFunction();
+          } else if (ysdk.environment.i18n.lang === "es") {
+            selectLanguageSpanishButtonFunction();
+          } else if (ysdk.environment.i18n.lang === "fr") {
+            selectLanguageFrenchButtonFunction();
+          } else if (ysdk.environment.i18n.lang === "tr") {
+            selectLanguageTurkishButtonFunction();
+          }
+        });
+      }
+    </script>
     <link rel="stylesheet" href="styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
@@ -11,9 +37,15 @@
     />
   </head>
   <body>
+        <div id="loading-screen" class="loading">
+        <div class="countdown animate">10</div>
+        <div class="loading-text">Загрузка..........</div>
+        <img src="images/logo.png" alt="creator" id="logo">
+      </div>
+
     <div id="modalStart" style="display: none">
       <div class="modal-content-start">
-        <p class="modalMusicP1">Добро пожаловать в Яндекс курьер: кликер!</p>
+        <p class="modalMusicP1">Добро пожаловать в Я курьер: кликер</p>
         <p class="modalMusicP2">Хотите включить музыку?</p>
         <p class="modalMusicP3">Вы всегда можете включить её в настройках.</p>
         <div>
@@ -26,7 +58,7 @@
     <div class="header">
       <div class="div-stamina"><span id="node-stamina"></span>%</div>
       <div class="div-happy"><span id="node-happy"></span>%</div>
-      <button id="btn-transport" onclick="openTransport()">
+      <button id="btn-transport" onclick="openTransport()" style="color: black;">
         <img src="images/transport.png" alt="" id="img-transport" />
         транспорт
       </button>
@@ -195,12 +227,30 @@
           <br /><br />
           <span style="font-weight: bold">🧠 Как всё работает:</span> <br />🏃‍♂️
           Во время доставки тратится выносливость и счастье. Их можно восполнить
-          в специальных вкладках. <img src="images/stamina.png" alt="" style="width: 4vw; border-radius: 1vw;">  <img src="images/happy.png" alt="" style="width: 4vw; border-radius: 1vw;"> Если у вас будет
-          менее 25% любой характеристики — вы не сможете выйти на заказы.<br />
-          🎲 В пути с тобой могут случаться события — как <span style="color: var(--green);">приятные</span> бонусы, так и
-          неожиданные <span style="color: var(--red);">неприятности</span>. Будь готов ко всему! <br />
-          💰 Заработав достаточно, ты сможешь сменить транспорт <img src="images/transport.png" alt="" style="width: 4vw; border-radius: 1vw;"> — это даст буст
-          к доходу и скорости. <br />
+          в специальных вкладках.
+          <img
+            src="images/stamina.png"
+            alt=""
+            style="width: 4vw; border-radius: 1vw"
+          />
+          <img
+            src="images/happy.png"
+            alt=""
+            style="width: 4vw; border-radius: 1vw"
+          />
+          Если у вас будет менее 25% любой характеристики — вы не сможете выйти
+          на заказы.<br />
+          🎲 В пути с тобой могут случаться события — как
+          <span style="color: var(--green)">приятные</span> бонусы, так и
+          неожиданные <span style="color: var(--red)">неприятности</span>. Будь
+          готов ко всему! <br />
+          💰 Заработав достаточно, ты сможешь сменить транспорт
+          <img
+            src="images/transport.png"
+            alt=""
+            style="width: 4vw; border-radius: 1vw"
+          />
+          — это даст буст к доходу и скорости. <br />
           📈 Прокачивай навыки во вкладке улучшений и становись сильнее,
           быстрее, круче. <br />
           🎵 В настройках можно настроить громкость музыки и звуков, чтобы
@@ -262,7 +312,7 @@
               />
             </div>
             <div class="characteristic-text-container">
-              <p>Выпить энергетик</p>
+              <p>Пополнить энергию</p>
             </div>
             <div class="characteristic-time-container">
               <p id="energyTime">3 сек</p>
@@ -283,14 +333,14 @@
               <p>Сходить в сауну</p>
             </div>
             <div class="characteristic-time-container">
-              <p id="saunaTime">5 сек</p>
-              <p class="p-stamina-color">+25%</p>
+              <p id="saunaTime" style="font-size: 4vw">реклама</p>
+              <p class="p-stamina-color">+50%</p>
             </div>
             <button
               class="characteristic-btn"
               onclick="useCharacteristic('sauna', this)"
             >
-              1,000 ₽
+              <img src="images/ad.png" alt="" style="width: 6vw" />
             </button>
           </div>
           <div class="characteristic-item">
@@ -397,14 +447,14 @@
               <p>Купить роллов</p>
             </div>
             <div class="characteristic-time-container">
-              <p id="sushiTime">5 сек</p>
-              <p class="p-happy-color">+25%</p>
+              <p id="sushiTime" style="font-size: 4vw">реклама</p>
+              <p class="p-happy-color">+50%</p>
             </div>
             <button
               class="characteristic-btn"
               onclick="useCharacteristic('sushi', this)"
             >
-              700 ₽
+              <img src="images/ad.png" alt="" style="width: 6vw" />
             </button>
           </div>
           <div class="characteristic-item">

@@ -1,3 +1,35 @@
+document.addEventListener("DOMContentLoaded", function () {
+  let countdownValue = 10;
+  const countdownElement = document.querySelector(".countdown");
+  const loadingTextElement = document.querySelector(".loading-text");
+  const loadingScreen = document.getElementById("loading-screen");
+
+  function updateCountdown() {
+    countdownElement.textContent = countdownValue;
+    countdownElement.classList.remove("animate");
+    void countdownElement.offsetWidth;
+    countdownElement.classList.add("animate");
+    loadingTextElement.textContent = "Загрузка" + ".".repeat(countdownValue);
+  }
+
+  updateCountdown();
+
+  const timer = setInterval(() => {
+    countdownValue--;
+    if (countdownValue > 0) {
+      updateCountdown();
+    } else {
+      clearInterval(timer);
+      setTimeout(() => {
+        loadingScreen.remove();
+        window.ysdk = ysdk;
+        ysdk.features.LoadingAPI?.ready();
+        ysdk.features.GameplayAPI.start();
+      }, 1000);
+    }
+  }, 1000);
+});
+
 let balance = Number(localStorage.getItem("balance")) || 0;
 let firstTime = localStorage.getItem("firstTime");
 firstTime = firstTime === null ? true : JSON.parse(firstTime);
@@ -8,6 +40,7 @@ let movementByke = localStorage.getItem("movementByke");
 let movementCar = localStorage.getItem("movementCar");
 let happyProcent = Number(localStorage.getItem("happyProcent")) || 100;
 let staminaProcent = Number(localStorage.getItem("staminaProcent")) || 100;
+let adCounter = 1;
 
 setInterval(() => {
   localStorage.setItem("happyProcent", happyProcent);
@@ -136,7 +169,58 @@ const eventPercentFunc = () => {
   eventsPercent.bad -= 1.25;
 };
 
-const audioSuccess = new Audio("/audio/success.mp3");
+//audio
+let currentHowl = null;
+let isAudioPlaying = false;
+let audioEnded = false;
+
+let savedVolume = localStorage.getItem("musicVolume");
+let volumeValue = savedVolume ? parseFloat(savedVolume) : 0.5;
+
+const input = document.getElementById("inputMusic");
+input.value = volumeValue * 100;
+
+currentHowl = new Howl({
+  src: ['audio/music.mp3'],
+  loop: true,
+  volume: volumeValue,
+  onend: () => {
+    audioEnded = true;
+    isAudioPlaying = false;
+    currentHowl = null;
+  }
+});
+
+window.addEventListener("click", () => {
+  if (currentHowl && !isAudioPlaying) {
+    currentHowl.play();
+    isAudioPlaying = true;
+    audioEnded = false;
+  }
+}, { once: true });
+
+input.addEventListener("input", (e) => {
+  const newVolume = e.target.value / 100;
+  if (currentHowl) {
+    currentHowl.volume(newVolume);
+    localStorage.setItem("musicVolume", newVolume);
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!currentHowl || audioEnded) return;
+
+  if (document.hidden) {
+    currentHowl.pause();
+    isAudioPlaying = false;
+  } else if (!isAudioPlaying) {
+    currentHowl.play();
+    isAudioPlaying = true;
+  }
+});
+// end audio
+
+const audioSuccess = new Audio("audio/success.mp3");
 let savedVolumeSuccess = localStorage.getItem("musicSuccess");
 let volumeSuccess = savedVolumeSuccess ? parseFloat(savedVolumeSuccess) : 0.5;
 audioSuccess.volume = volumeSuccess;
@@ -528,8 +612,6 @@ const btnBuyTransport = (modeOfTransport) => {
   }
 };
 
-localStorage.clear();
-
 const start = () => {
   let randomStart;
   if (firstTime) {
@@ -568,7 +650,7 @@ const start = () => {
         if (random > 2) {
           random -= 1;
           updateTime(random);
-          const clickSound = new Audio("/audio/click.mp3");
+          const clickSound = new Audio("audio/click.mp3");
           clickSound.volume = 0.5;
           clickSound.play();
         }
@@ -615,6 +697,7 @@ const start = () => {
               document.querySelector(".krit").style.opacity = 0;
               document.querySelector(".krit").style.transform = "scale(1.0)";
             }, 300);
+            adCounter++;
           } else {
             balance += Number((randomStart * randomForBalance).toFixed());
             updateBalance();
@@ -701,6 +784,37 @@ const useCharacteristic = (char, button) => {
     }, duration);
   };
 
+  const buyCharacteristicAd = (char, plus) => {
+    const currentProcent = char === "stamina" ? staminaProcent : happyProcent;
+    currentHowl.pause();
+    if (currentProcent >= 100) return;
+    zvukPlay();
+    ysdk.adv.showRewardedVideo({
+      callbacks: {
+        onRewarded: () => {
+          if (char === "stamina") {
+            staminaProcent = Math.min(100, staminaProcent + plus);
+            currentHowl.play();
+          updateCharacteristic();
+          } else {
+            happyProcent = Math.min(100, happyProcent + plus);
+          updateCharacteristic();
+          currentHowl.play();
+          }
+          updateCharacteristic();
+        },
+        onClose: () => {
+          console.log("Video ad closed.");
+          updateCharacteristic();
+          currentHowl.play();
+        },
+        onError: (e) => {
+          console.error("Error while opening video ad:", e);
+        },
+      },
+    });
+  };
+
   switch (char) {
     case "sleep":
       buyCharacteristic(0, "stamina", 5, 8000, "sleepTime");
@@ -713,8 +827,7 @@ const useCharacteristic = (char, button) => {
       zvukPlay();
       break;
     case "sauna":
-      buyCharacteristic(1000, "stamina", 25, 5000, "saunaTime");
-      lockButton(5000);
+      buyCharacteristicAd("stamina", 50);
       zvukPlay();
       break;
     case "ukol":
@@ -738,8 +851,7 @@ const useCharacteristic = (char, button) => {
       zvukPlay();
       break;
     case "sushi":
-      buyCharacteristic(700, "happy", 25, 5000, "sushiTime");
-      lockButton(5000);
+      buyCharacteristicAd("happy", 50);
       zvukPlay();
       break;
     case "friends":
@@ -754,3 +866,20 @@ const useCharacteristic = (char, button) => {
       break;
   }
 };
+
+
+setInterval(()=> {
+  ysdk.adv.showFullscreenAdv({
+    callbacks: {
+        onOpen: function() {
+    currentHowl.pause();
+        },
+        onClose: function(wasShown) {
+    currentHowl.play();
+        },
+        onError: function(error) {
+    currentHowl.play();
+        },
+    }
+})
+}, 300000)
